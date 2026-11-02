@@ -45,6 +45,7 @@
 
         <!-- Company info-->
         <TextView
+            android:id="@+id/textContactDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -52,6 +53,15 @@
             android:text="@string/company_intro"
             android:textColor="@color/colorTextPrimary"
             android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/buttonPersonalIntro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/show_personal_intro"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/colorAccent" />
 
         <!--  Divider line. -->
         <View

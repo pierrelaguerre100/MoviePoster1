@@ -1,23 +1,30 @@
 <resources>
-    <string name="app_name">Poster1019</string>
+    <string name="app_name">Pierre\'s Movie Picks</string>
     <string name="add_to_watchlist">Add To Watchlist</string>
     <string name="posters">Posters</string>
 
     <string name="nav_main">Main Page</string>
     <string name="nav_favorites">Favorite List</string>
     <string name="nav_contact">Contact Us</string>
+    <string name="nav_scene">Movie Scene</string>
     <string name="title_favorites">Favorite List</string>
     <string name="title_contact">Contact Us</string>
+    <string name="title_scene">Movie Scene</string>
     <string name="app_version">Version 1.0</string>
     <string name="navigation_drawer_open">Open menu</string>
     <string name="navigation_drawer_close">Close menu</string>
 
     <string name="about_us">About us</string>
-    <string name="company_intro">MoviePoster is a small studio that builds simple, friendly apps for discovering films from around the world. We hand-pick posters and stories so you can quickly find, and save, your next favorite movie.</string>
+    <string name="company_intro">Explore five original movie ideas, save the ones you like, and enjoy a hand-drawn movie scene inspired by the collection.</string>
+    <string name="personal_intro">Hi, I\'m Pierre. I created this app to share imaginative movie ideas and practice building useful Android experiences.</string>
+    <string name="show_personal_intro">Meet the creator</string>
     <string name="get_in_touch">Get in touch</string>
     <string name="contact_email">contact@movieposter.example</string>
     <string name="contact_email_hint">Tap to open your email app</string>
     <string name="no_email_app">No email app found</string>
+    <string name="scene_heading">A Night at the Movies</string>
+    <string name="scene_description">This original movie still shows a cozy neighborhood screening with a mountain adventure playing on the projector. It is a reminder that movies can make an ordinary evening feel like a journey.</string>
+    <string name="scene_image_description">Illustrated movie-night scene with a projector screen</string>
 
 
     <plurals name="favorites_added">

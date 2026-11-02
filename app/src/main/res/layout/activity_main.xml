@@ -27,6 +27,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+            app:logo="@drawable/ic_cinema_logo"
+            app:logoDescription="@string/app_name"
             app:title="@string/posters"
             app:titleCentered="true"
             app:titleTextAppearance="@style/ToolbarTitle" />

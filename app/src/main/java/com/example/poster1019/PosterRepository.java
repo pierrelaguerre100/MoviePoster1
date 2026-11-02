@@ -120,47 +120,44 @@ public class PosterRepository {
         }
     }
 
+    /** Creates the five original movie cards displayed on the Main Page. */
     private static List<Posters> createPosters() {
         List<Posters> posters = new ArrayList<>();
 
-        Posters the100 = new Posters();
-        the100.id = "vietnam";
-        the100.image = R.drawable.poster3;
-        the100.name = "Vietnam Movie";
-        the100.rating = 5f;
-        the100.createdBy = "Cuong Ngo";
-        the100.story = "This is an Vietnam Movie with a young lady";
-        posters.add(the100);
+        posters.add(createPoster("starlight_journey", R.drawable.poster_starlight_journey,
+                "Starlight Journey", 4.5f, "Maya Carter",
+                "A young pilot follows a mysterious signal beyond the last mapped star."));
 
-        Posters chineseMovie = new Posters();
-        chineseMovie.id = "chinese";
-        chineseMovie.image = R.drawable.poster4;
-        chineseMovie.name = "Chinese Movie";
-        chineseMovie.rating = 4f;
-        chineseMovie.createdBy = "Zhang San";
-        chineseMovie.story = "This is an Chinese Movie with a young lady.";
-        posters.add(chineseMovie);
+        posters.add(createPoster("midnight_kitchen", R.drawable.poster_midnight_kitchen,
+                "The Midnight Kitchen", 4f, "Jordan Lee",
+                "Three friends rediscover their neighborhood through late-night recipes."));
 
-        Posters japanMovie = new Posters();
-        japanMovie.id = "japanese";
-        japanMovie.image = R.drawable.poster1;
-        japanMovie.name = "Japanese Movie";
-        japanMovie.rating = 3f;
-        japanMovie.createdBy = "Juzo Itami";
-        japanMovie.story = "This is an Japanese Movie.";
-        posters.add(japanMovie);
+        posters.add(createPoster("rainy_platform", R.drawable.poster_rainy_platform,
+                "Rainy Platform", 4.5f, "Elena Brooks",
+                "A missed train turns into an unexpected conversation and a new beginning."));
 
-        Posters americanMovie = new Posters();
-        americanMovie.id = "american";
-        americanMovie.image = R.drawable.poster2;
-        americanMovie.name = "American Movie";
-        americanMovie.rating = 5f;
-        americanMovie.createdBy = "Tim Burton";
-        americanMovie.story = "This is an American Movie.";
-        posters.add(americanMovie);
+        posters.add(createPoster("paper_airplanes", R.drawable.poster_paper_airplanes,
+                "Paper Airplanes", 5f, "Noah Bennett",
+                "A teen builds a flying club that brings a divided school together."));
+        posters.add(createPoster("orchard_summer", R.drawable.poster_orchard_summer,
+                "Orchard Summer", 4f, "Sofia Martinez",
+                "A city student spends one unforgettable summer helping at a family orchard."));
 
         return posters;
 
+    }
+
+    /** Builds one poster object so every movie has the same complete set of details. */
+    private static Posters createPoster(String id, int image, String name, float rating,
+                                        String director, String story) {
+        Posters poster = new Posters();
+        poster.id = id;
+        poster.image = image;
+        poster.name = name;
+        poster.rating = rating;
+        poster.createdBy = director;
+        poster.story = story;
+        return poster;
     }
 
 

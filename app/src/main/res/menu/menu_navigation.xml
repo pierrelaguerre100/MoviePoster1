@@ -11,6 +11,9 @@
         <item android:id="@+id/nav_contact"
             android:icon="@drawable/ic_mail"
             android:title="@string/nav_contact"/>
+        <item android:id="@+id/nav_scene"
+            android:icon="@drawable/ic_movie"
+            android:title="@string/nav_scene"/>
     </group>
 
 </menu>

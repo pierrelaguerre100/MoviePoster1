@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_PAGE_MAIN = "page_main";
     private static final String TAG_PAGE_FAVORITES = "page_favorites";
     private static final String TAG_PAGE_CONTACT = "page_contact";
+    private static final String TAG_PAGE_SCENE = "page_scene";
 
     //drawer the side menu inside it, and the bottom bar.
     private DrawerLayout drawerLayout;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private PosterRepository posterRepository;
     private final PosterRepository.FavoritesListener favoritesBadgeListener = this::updateFavoritesBadge;
 
+    /** Updates the Favorite List badge whenever the saved favorite count changes. */
     private void updateFavoritesBadge() {
 
         int count = posterRepository.getFavoriteCount();
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /** Sets up navigation, saved-page restoration, and the Favorite List badge. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragmentContainer, new PostersFragment(), TAG_PAGE_MAIN)
                     .add(R.id.fragmentContainer, new FavoritesFragment(), TAG_PAGE_FAVORITES)
                     .add(R.id.fragmentContainer, new ContactFragment(), TAG_PAGE_CONTACT)
+                    .add(R.id.fragmentContainer, new MovieSceneFragment(), TAG_PAGE_SCENE)
                     .commitNow();
         } else {
             currentPageId = savedInstanceState.getInt(KEY_CURRENT_PAGE, R.id.nav_main);
@@ -128,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         updateFavoritesBadge();
     }
 
+    /** Unregisters the activity from repository updates before it is destroyed. */
     @Override
     protected void onDestroy() {
         posterRepository.removeFavoritesListener(favoritesBadgeListener);
@@ -141,15 +146,16 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt(KEY_CURRENT_PAGE, currentPageId);
     }
 
+    /** Displays the requested page and synchronizes both navigation controls. */
     private void showPage(int pageId) {
         currentPageId = pageId;
 
-        //Show this page's Fragment and hide the other two. show/hide (instead of
+        //Show this page's Fragment and hide the other pages. show/hide (instead of
         // replace) keeps each page alive, with its scroll position and selections.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         String visibleTag = tagForPage(pageId);
-        for (String tag : new String[]{TAG_PAGE_MAIN, TAG_PAGE_FAVORITES, TAG_PAGE_CONTACT}) {
+        for (String tag : new String[]{TAG_PAGE_MAIN, TAG_PAGE_FAVORITES, TAG_PAGE_CONTACT, TAG_PAGE_SCENE}) {
             Fragment page = fragmentManager.findFragmentByTag(tag);
             if (page == null) {
                 continue;
@@ -174,21 +180,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Toolbar title for each page.
+    /** Returns the toolbar title resource for a navigation item. */
     private int titleForPage(int pageId) {
         if (pageId == R.id.nav_favorites) {
             return R.string.title_favorites;
         } else if (pageId == R.id.nav_contact) {
             return R.string.title_contact;
+        } else if (pageId == R.id.nav_scene) {
+            return R.string.title_scene;
         }
         return R.string.posters;
     }
 
     //Which Fragment tag belongs to a page.
+    /** Returns the FragmentManager tag belonging to a navigation item. */
     private String tagForPage(int pageId) {
         if (pageId == R.id.nav_favorites) {
             return TAG_PAGE_FAVORITES;
         } else if (pageId == R.id.nav_contact) {
             return TAG_PAGE_CONTACT;
+        } else if (pageId == R.id.nav_scene) {
+            return TAG_PAGE_SCENE;
         }
         return TAG_PAGE_MAIN;
     }
