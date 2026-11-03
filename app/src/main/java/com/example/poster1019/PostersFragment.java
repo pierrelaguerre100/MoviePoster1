@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class PostersFragment extends Fragment implements posterListener {
         super.onViewCreated(view, savedInstanceState);
         //find the list and the button
         RecyclerView posterRecyclerView = view.findViewById(R.id.posTersRecyclerView);
+        posterRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         buttonAddtoWatchList  = view.findViewById(R.id.buttonAddToWatchlist);
 
         //the posters come from the shared repository

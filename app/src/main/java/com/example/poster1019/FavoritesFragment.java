@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class FavoritesFragment extends Fragment implements PosterRepository.Favo
 
         textFavoritesCount = view.findViewById(R.id.textFavoritesCount);
         favoritesRecyclerView = view.findViewById(R.id.favoritesRecyclerView);
+        favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         layoutFavoritesEmpty = view.findViewById(R.id.layoutFavoritesEmpty);
 
         posterRepository = PosterRepository.getInstance(requireContext());

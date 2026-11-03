@@ -15,16 +15,16 @@
     <string name="navigation_drawer_close">Close menu</string>
 
     <string name="about_us">About us</string>
-    <string name="company_intro">Explore five original movie ideas, save the ones you like, and enjoy a hand-drawn movie scene inspired by the collection.</string>
-    <string name="personal_intro">Hi, I\'m Pierre. I created this app to share imaginative movie ideas and practice building useful Android experiences.</string>
+    <string name="company_intro">Browse a collection of favorite films with realistic cinematic scenes, then save the movies you want to watch again.</string>
+    <string name="personal_intro">Hi, I\'m Pierre. I created this app to showcase favorite films with realistic movie scenes while practicing useful Android experiences.</string>
     <string name="show_personal_intro">Meet the creator</string>
     <string name="get_in_touch">Get in touch</string>
     <string name="contact_email">contact@movieposter.example</string>
     <string name="contact_email_hint">Tap to open your email app</string>
     <string name="no_email_app">No email app found</string>
-    <string name="scene_heading">A Night at the Movies</string>
-    <string name="scene_description">This original movie still shows a cozy neighborhood screening with a mountain adventure playing on the projector. It is a reminder that movies can make an ordinary evening feel like a journey.</string>
-    <string name="scene_image_description">Illustrated movie-night scene with a projector screen</string>
+    <string name="scene_heading">Titanic: A Moment at Sea</string>
+    <string name="scene_description">This cinematic still from Titanic captures Jack and Rose at the ship\'s bow, where an unforgettable moment of freedom and connection unfolds at sea.</string>
+    <string name="scene_image_description">Titanic movie scene showing Jack and Rose at the bow of the ship</string>
 
 
     <plurals name="favorites_added">

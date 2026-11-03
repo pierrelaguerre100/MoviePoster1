@@ -29,9 +29,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
+        android:scrollbars="vertical"
             android:orientation="vertical"
-            android:padding="5dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:padding="5dp"/>
 
         <!--Empty state: a light heart and a hint on how to add favorites-->
         <LinearLayout

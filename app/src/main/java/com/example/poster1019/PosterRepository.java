@@ -124,24 +124,25 @@ public class PosterRepository {
     private static List<Posters> createPosters() {
         List<Posters> posters = new ArrayList<>();
 
-        posters.add(createPoster("starlight_journey", R.drawable.poster_starlight_journey,
-                "Starlight Journey", 4.5f, "Maya Carter",
-                "A young pilot follows a mysterious signal beyond the last mapped star."));
+        posters.add(createPoster("inception", R.drawable.image_01_inception,
+                "Inception", 4.5f, "Christopher Nolan",
+                "A skilled extractor enters dreams to steal secrets and is offered one final job: plant an idea instead."));
 
-        posters.add(createPoster("midnight_kitchen", R.drawable.poster_midnight_kitchen,
-                "The Midnight Kitchen", 4f, "Jordan Lee",
-                "Three friends rediscover their neighborhood through late-night recipes."));
+        posters.add(createPoster("titanic", R.drawable.image_02_titanic,
+                "Titanic", 4.5f, "James Cameron",
+                "A young aristocrat and a free-spirited artist fall in love aboard the doomed RMS Titanic."));
 
-        posters.add(createPoster("rainy_platform", R.drawable.poster_rainy_platform,
-                "Rainy Platform", 4.5f, "Elena Brooks",
-                "A missed train turns into an unexpected conversation and a new beginning."));
+        posters.add(createPoster("the_avengers", R.drawable.image_03_the_avengers,
+                "The Avengers", 4.5f, "Joss Whedon",
+                "Earth's mightiest heroes join forces to stop Loki and an alien invasion from conquering the world."));
 
-        posters.add(createPoster("paper_airplanes", R.drawable.poster_paper_airplanes,
-                "Paper Airplanes", 5f, "Noah Bennett",
-                "A teen builds a flying club that brings a divided school together."));
-        posters.add(createPoster("orchard_summer", R.drawable.poster_orchard_summer,
-                "Orchard Summer", 4f, "Sofia Martinez",
-                "A city student spends one unforgettable summer helping at a family orchard."));
+        posters.add(createPoster("interstellar", R.drawable.image_04_interstellar,
+                "Interstellar", 5f, "Christopher Nolan",
+                "Explorers travel through a wormhole in search of a new home for humanity as Earth becomes uninhabitable."));
+
+        posters.add(createPoster("the_return_of_the_king", R.drawable.image_05_return_of_the_king,
+                "The Lord of the Rings: The Return of the King", 5f, "Peter Jackson",
+                "Frodo and Sam make their final journey to Mount Doom while Aragorn leads the free peoples against Sauron."));
 
         return posters;
 

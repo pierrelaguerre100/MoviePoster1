@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
     android:background="@color/white"
     tools:context=".MovieSceneFragment">
 
@@ -18,7 +20,7 @@
             android:layout_height="240dp"
             android:contentDescription="@string/scene_image_description"
             android:scaleType="centerCrop"
-            android:src="@drawable/movie_night_scene" />
+            android:src="@drawable/image_02_titanic" />
 
         <TextView
             android:layout_width="wrap_content"

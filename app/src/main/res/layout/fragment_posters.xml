@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:scrollbars="vertical"
         android:orientation="vertical"
         android:padding="5dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddToWatchlist"
         app:layout_constraintTop_toTopOf="parent"/>
 
