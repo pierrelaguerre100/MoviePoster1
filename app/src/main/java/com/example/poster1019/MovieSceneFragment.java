@@ -2,7 +2,7 @@ package com.example.poster1019;
 
 import androidx.fragment.app.Fragment;
 
-/** Displays an original still and description for the app's fourth page. */
+/** Displays the dedicated movie-scene page selected from the app navigation. */
 public class MovieSceneFragment extends Fragment {
 
     /** Creates the fragment with the movie-scene layout. */

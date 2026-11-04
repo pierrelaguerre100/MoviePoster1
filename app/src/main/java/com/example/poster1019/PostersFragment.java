@@ -25,27 +25,29 @@ public class PostersFragment extends Fragment implements posterListener {
         super(R.layout.fragment_posters);
     }
 
+    /** Configures the poster picker and adds selected posters to persistent favorites. */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //find the list and the button
+        // Set up the scrolling catalog and keep the bulk-action button hidden initially.
         RecyclerView posterRecyclerView = view.findViewById(R.id.posTersRecyclerView);
+        // This vertical layout manager makes the Main Page poster cards scroll up and down.
         posterRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         buttonAddtoWatchList  = view.findViewById(R.id.buttonAddToWatchlist);
 
-        //the posters come from the shared repository
+        // The shared repository keeps catalog, selections, and favorites consistent across pages.
         posterRepository = PosterRepository.getInstance(requireContext());
         List<Posters> posters = posterRepository.getAllPosters();
 
-        //connect the list to its adapter
+        // This adapter allows cards to be selected for the bulk Add To Watchlist action.
         final PostersAdapter postersAdapter = new PostersAdapter(posters, this);
 //        final PostersAdapter postersAdapter = new PostersAdapter(posters, (posterListener) this);
         posterRecyclerView.setAdapter(postersAdapter);
 
-        //selections live in the repository and survive rotation, so button show up again
+        // Selection state lives in the repository, so restore the button after rotation.
         OnPosterAction(!postersAdapter.getSelectedPosters().isEmpty());
 
-        //show the selected names
+        // Save all selected cards, then reset the picker for the next selection.
         buttonAddtoWatchList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

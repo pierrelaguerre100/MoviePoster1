@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String KEY_CURRENT_PAGE = "current_page";
 
-    //Tags to find each page's Fragment again in the FragmentManager.
+    // Tags let navigation reuse each page's Fragment instead of creating a new one.
     private static final String TAG_PAGE_MAIN = "page_main";
     private static final String TAG_PAGE_FAVORITES = "page_favorites";
     private static final String TAG_PAGE_CONTACT = "page_contact";
     private static final String TAG_PAGE_SCENE = "page_scene";
 
-    //drawer the side menu inside it, and the bottom bar.
+    // Navigation controls shared by the drawer and bottom navigation bar.
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigation;
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        //find by id
+        // Connect the activity to its drawer, toolbar, and bottom navigation controls.
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
         bottomNavigation = findViewById(R.id.bottomNavigation);
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        //The drawer and the bottom bar both just call showPage().
+        // Both navigation controls use one method so their selected state stays synchronized.
         // Returning true tells them to show the tapped item as selected.
         navigationView.setNavigationItemSelectedListener(item -> {
             showPage(item.getItemId());
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        //Window insets: the sizes of the status bar, navigation bar and camera cut-out.
+        // Keep content clear of system bars and display cutouts on edge-to-edge devices.
         final AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
         final View fragmentContainer = findViewById(R.id.fragmentContainer);
 
@@ -116,9 +116,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
+                    // Adds the Main Page, whose RecyclerView displays a scrollable poster catalog.
                     .add(R.id.fragmentContainer, new PostersFragment(), TAG_PAGE_MAIN)
+                    // Adds the Favorite List, whose RecyclerView displays saved movies in a scrollable list.
                     .add(R.id.fragmentContainer, new FavoritesFragment(), TAG_PAGE_FAVORITES)
+                    // Adds the Contact page, where the button can replace contact text with an introduction.
                     .add(R.id.fragmentContainer, new ContactFragment(), TAG_PAGE_CONTACT)
+                    // Registers the Movie Scene fragment so navigation can display the fourth page.
                     .add(R.id.fragmentContainer, new MovieSceneFragment(), TAG_PAGE_SCENE)
                     .commitNow();
         } else {
@@ -139,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    //Remember the current page, so a rotation doesn't jump back to the Main Page.
+    // Remember the visible page so rotation does not return the user to the Main Page.
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -150,8 +154,8 @@ public class MainActivity extends AppCompatActivity {
     private void showPage(int pageId) {
         currentPageId = pageId;
 
-        //Show this page's Fragment and hide the other pages. show/hide (instead of
-        // replace) keeps each page alive, with its scroll position and selections.
+        // Show this page and hide the rest. Keeping fragments alive preserves scroll
+        // positions, selection state, and Favorite List updates between navigation actions.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         String visibleTag = tagForPage(pageId);
@@ -179,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Toolbar title for each page.
     /** Returns the toolbar title resource for a navigation item. */
     private int titleForPage(int pageId) {
         if (pageId == R.id.nav_favorites) {
@@ -187,12 +190,12 @@ public class MainActivity extends AppCompatActivity {
         } else if (pageId == R.id.nav_contact) {
             return R.string.title_contact;
         } else if (pageId == R.id.nav_scene) {
+            // Sets the toolbar title when the fourth Movie Scene page is visible.
             return R.string.title_scene;
         }
         return R.string.posters;
     }
 
-    //Which Fragment tag belongs to a page.
     /** Returns the FragmentManager tag belonging to a navigation item. */
     private String tagForPage(int pageId) {
         if (pageId == R.id.nav_favorites) {
@@ -200,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (pageId == R.id.nav_contact) {
             return TAG_PAGE_CONTACT;
         } else if (pageId == R.id.nav_scene) {
+            // Maps the Movie Scene navigation item to its fourth-page fragment.
             return TAG_PAGE_SCENE;
         }
         return TAG_PAGE_MAIN;

@@ -56,14 +56,14 @@ public class PosterRepository {
         return null;
     }
 
-    // deselects every poster
+    /** Clears Main Page selections after they have been added to the Favorite List. */
     public void clearSelection(){
         for(Posters poster : allPosters){
             poster.isSelected = false;
         }
     }
 
-    //get favorite posters, in the order they were added
+    /** Resolves saved favorite IDs into poster cards, preserving the order they were added. */
     public List<Posters> getFavorites(){
         List<Posters> favorites = new ArrayList<>();
         for (String id : favoritesStore.getIds()) {
@@ -115,12 +115,13 @@ public class PosterRepository {
     }
 
     private void notifyFavoritesChanged() {
+        // Copy first so listeners can safely unregister while receiving the update.
         for(FavoritesListener listener : new ArrayList<>(favoritesListeners)){
             listener.onFavoritesChanged();
         }
     }
 
-    /** Creates the five original movie cards displayed on the Main Page. */
+    /** Creates the five movie cards displayed on the Main Page. */
     private static List<Posters> createPosters() {
         List<Posters> posters = new ArrayList<>();
 

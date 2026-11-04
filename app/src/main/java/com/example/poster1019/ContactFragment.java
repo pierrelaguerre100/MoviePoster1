@@ -33,6 +33,7 @@ public class ContactFragment extends Fragment {
 
         Button personalIntroButton = view.findViewById(R.id.buttonPersonalIntro);
         TextView contactDescription = view.findViewById(R.id.textContactDescription);
+        // Replaces the general contact text with the creator introduction on this same page.
         personalIntroButton.setOnClickListener(clickedView ->
                 contactDescription.setText(R.string.personal_intro));
     }

@@ -38,6 +38,7 @@ public class PostersAdapter extends RecyclerView.Adapter<PostersAdapter.PostersV
         this.removeFavoriteListener = removeFavoriteListener;
     }
 
+    /** Replaces Favorite List data after the repository reports a saved-data change. */
     public void setPosters(List<Posters> posters) {
         this.posters = posters;
         notifyDataSetChanged();
@@ -72,6 +73,7 @@ public class PostersAdapter extends RecyclerView.Adapter<PostersAdapter.PostersV
         return posters.size();
     }
 
+    /** Returns cards selected on the Main Page so they can be added as favorites. */
     public List<Posters> getSelectedPosters(){
         List<Posters> selectedPosters = new ArrayList<>();
         for (Posters poster : posters){
@@ -112,12 +114,13 @@ public class PostersAdapter extends RecyclerView.Adapter<PostersAdapter.PostersV
             ratingBar.setRating(posters.rating);
 
             if(mode == Mode.FAVORITE){
+                // Favorite List cards have one action: remove this saved favorite.
                 bindFavorite(posters);
                 return;
             }
             imageRemove.setVisibility(View.GONE);
 
-            // show whether the poster is selected
+            // Restore selection styling whenever a Main Page card is rebound.
             if(posters.isSelected){
                 viewbackground.setBackgroundResource(R.drawable.poster_selected_background);
                 imageSelected.setVisibility(View.VISIBLE);

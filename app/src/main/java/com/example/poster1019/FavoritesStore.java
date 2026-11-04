@@ -9,10 +9,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Saves the favorite poster IDs on the device, so they survive closing the app.
- *
- */
+/** Saves favorite poster IDs in SharedPreferences so they survive app restarts. */
 public class FavoritesStore {
     private static final String PREFS_NAME = "favorites";
     private static final String KEY_IDS = "ids";
@@ -20,7 +17,7 @@ public class FavoritesStore {
 
     private final SharedPreferences preferences;
 
-    //in-memory copy of the saved Ids
+    // In-memory copy keeps reads fast while SharedPreferences provides persistence.
     private final List<String> ids;
 
 
@@ -29,7 +26,7 @@ public class FavoritesStore {
         ids = decode(preferences.getString(KEY_IDS,""));
     }
 
-    //get IDS, in the order they were added (read-only)
+    /** Returns favorite IDs in insertion order without allowing callers to modify them. */
     public List<String> getIds(){
         return Collections.unmodifiableList(ids);
     }
@@ -48,7 +45,7 @@ public class FavoritesStore {
         return added;
     }
 
-    //remove one ID, return true if it was there
+    /** Removes one saved favorite and reports whether it was present. */
     public boolean remove(String id){
         boolean removed = ids.remove(id);
         if(removed){
@@ -57,7 +54,7 @@ public class FavoritesStore {
         return removed;
     }
 
-    //Drops saved ids that don't match any poster any more
+    /** Removes stale IDs when the app's available poster catalog changes. */
     public void retainOnly(Collection<String> validIds){
         if(ids.retainAll(validIds)){
             save();
@@ -65,7 +62,7 @@ public class FavoritesStore {
     }
 
     private void save(){
-        //apply() writes the file in the backgorund.
+        // apply() persists the change asynchronously without blocking the UI thread.
         preferences.edit().putString(KEY_IDS,encode(ids)).apply();
     }
 
@@ -81,6 +78,7 @@ public class FavoritesStore {
     }
 
     static List<String> decode(String saved){
+        // Ignore empty and duplicate values from older or malformed saved data.
         List<String> result = new ArrayList<>();
         if (saved == null || saved.isEmpty()){
             return result;
